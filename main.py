@@ -7,7 +7,6 @@ from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
 
 import config
-import errHelper
 from handlers import router
 
 
