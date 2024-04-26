@@ -17,10 +17,10 @@ async def start_handler(msg: Message):
         text=f"Приветственное сообщение",
         callback_data=f"btnHello")
     )
-    if msg.chat.id in [config.TOP_ADMINS]:
+    if str(msg.chat.id) in config.TOP_ADMINS:
         hi = "Добро пожаловать, админ"
     else:
-        hi = strConfig.helloMessage + '\n' + str(msg.chat.id)
+        hi = strConfig.helloMessage
 
     await msg.answer(hi, reply_markup=builder.as_markup())
 
