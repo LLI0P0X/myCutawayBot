@@ -37,6 +37,7 @@ def restartService(serviceName: str):
 
 
 if __name__ == "__main__":
+    print(__file__)
     serviceName = 'main'
     createService(serviceName)
     runService(serviceName)
