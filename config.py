@@ -7,3 +7,4 @@ DeepSeekAPIToken = secret.DeepSeekAPIToken
 
 gitHabUrl = 'https://github.com/LLI0P0X/myCutawayBot'
 path = os.getcwd()
+usrPath = '/home/admin'
