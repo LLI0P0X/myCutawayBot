@@ -28,14 +28,13 @@ async def start_handler(msg: Message):
 
 @router.message(Command("cd_run"))
 async def start_handler(msg: Message):
-    if not(msg.chat.id in config.TOP_ADMINS):
+    if msg.chat.id in config.TOP_ADMINS:
+        await msg.answer('Обновление начато')
+        CD.myGitHab.pull()
+        CD.myService.createService('main')
+        CD.myService.runService('main')
+    else:
         await msg.answer(strConfig.accessDenied + '\n id: ' + str(msg.chat.id))
-        return None
-
-    await msg.answer('Обновление начато')
-    CD.myGitHab.pull()
-    CD.myService.createService('main')
-    CD.myService.runService('main')
 
 
 @router.callback_query(lambda c: "btnHello" in c.data)
