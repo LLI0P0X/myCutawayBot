@@ -18,7 +18,7 @@ async def start_handler(msg: Message):
         text=f"Приветственное сообщение",
         callback_data=f"btnHello")
     )
-    if msg.chat.id in config.TOP_ADMINS:
+    if int(msg.from_user.id) in config.TOP_ADMINS:
         hi = "Добро пожаловать, админ"
     else:
         hi = strConfig.helloMessage
@@ -28,13 +28,13 @@ async def start_handler(msg: Message):
 
 @router.message(Command("cd_run"))
 async def start_handler(msg: Message):
-    if msg.chat.id in config.TOP_ADMINS:
+    if int(msg.from_user.id) in config.TOP_ADMINS:
         await msg.answer('Обновление начато')
         CD.myGitHab.pull()
         CD.myService.createService('main')
         CD.myService.runService('main')
     else:
-        await msg.answer(strConfig.accessDenied + '\n id: ' + str(msg.chat.id))
+        await msg.answer(strConfig.accessDenied + '\n id: ' + str(msg.from_user.id))
 
 
 @router.callback_query(lambda c: "btnHello" in c.data)
