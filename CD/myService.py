@@ -26,30 +26,18 @@ WantedBy=multi-user.target'''
 
 
 def runService(serviceName: str):
-    subprocess.run(f'sudo cp {os.path.join(os.path.dirname(__file__), serviceName + ".service")} /etc/systemd/system')
-    subprocess.run(f'sudo systemctl enable {serviceName}.service')
-    subprocess.run(f'sudo systemctl restart {serviceName}.service')
+    subprocess.run(f'sudo cp {os.path.join(os.path.dirname(__file__), serviceName + ".service")} /etc/systemd/system',
+                   shell=True)
+    subprocess.run(f'sudo systemctl enable {serviceName}.service', shell=True)
+    subprocess.run(f'sudo systemctl restart {serviceName}.service', shell=True)
 
 
 def restartService(serviceName: str):
-    subprocess.run(f'sudo systemctl restart {serviceName}.service')
+    subprocess.run(f'sudo systemctl restart {serviceName}.service', shell=True)
 
 
 if __name__ == "__main__":
     serviceName = 'main'
     createService(serviceName)
     runService(serviceName)
-
-# [Unit]
-# Description=main.py
-# After=muli-user.target
-#
-# [Service]
-# Type=simple
-# RemainAfterExit=yes
-# WarkingDirectory=/root/bot/CryptoParserAndSignalBot-main
-# ExecStart=/usr/bin/python3 /root/bot/CryptoParserAndSignalBot-main/main.py
-# Restart=always
-#
-# [Install]
-# WantedBy=multi-user.target
+   
