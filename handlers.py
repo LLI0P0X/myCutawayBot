@@ -4,6 +4,7 @@ from aiogram.filters import Command
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 import config
 import strConfig
+import CD.myService, CD.myGitHab
 
 router = Router()
 
@@ -23,6 +24,18 @@ async def start_handler(msg: Message):
         hi = strConfig.helloMessage
 
     await msg.answer(hi, reply_markup=builder.as_markup())
+
+
+@router.message(Command("cd-run"))
+async def start_handler(msg: Message):
+    if msg.chat.id not in config.TOP_ADMINS:
+        await msg.answer(strConfig.accessDenied + str(msg.chat.id))
+        return None
+
+    await msg.answer('Обновление начато')
+    CD.myGitHab.pull()
+    CD.myService.createService('main')
+    CD.myService.runService('main')
 
 
 @router.callback_query(lambda c: "btnHello" in c.data)
