@@ -15,7 +15,7 @@ After=muli-user.target
 [Service]
 Type=simple
 ExecStart=python3 {os.path.join(config.path, serviceName + ".py")}
-WorkingDirectory={(os.path.dirname(os.getcwd()))}
+WorkingDirectory={config.path}
 RemainAfterExit=yes
 Restart=always
 
@@ -26,7 +26,7 @@ WantedBy=multi-user.target'''
 
 
 def runService(serviceName: str):
-    subprocess.run(f'sudo cp {os.path.join(os.getcwd(), serviceName + ".service")} /etc/systemd/system')
+    subprocess.run(f'sudo cp {os.path.join(os.path.dirname(__file__), serviceName + ".service")} /etc/systemd/system')
     subprocess.run(f'sudo systemctl enable {serviceName}.service')
     subprocess.run(f'sudo systemctl restart {serviceName}.service')
 
