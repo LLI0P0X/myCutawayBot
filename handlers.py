@@ -18,7 +18,7 @@ async def start_handler(msg: Message):
         text=f"Приветственное сообщение",
         callback_data=f"btnHello")
     )
-    if str(msg.chat.id) in config.TOP_ADMINS:
+    if msg.chat.id in config.TOP_ADMINS:
         hi = "Добро пожаловать, админ"
     else:
         hi = strConfig.helloMessage
@@ -29,7 +29,7 @@ async def start_handler(msg: Message):
 @router.message(Command("cd-run"))
 async def start_handler(msg: Message):
     if msg.chat.id not in config.TOP_ADMINS:
-        await msg.answer(strConfig.accessDenied + str(msg.chat.id))
+        await msg.answer(strConfig.accessDenied + '\n id: ' + str(msg.chat.id))
         return None
 
     await msg.answer('Обновление начато')
