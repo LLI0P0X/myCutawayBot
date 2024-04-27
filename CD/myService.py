@@ -14,7 +14,6 @@ After=muli-user.target
 
 [Service]
 Type=simple
-User = {config.usr}
 ExecStart=/usr/bin/python3 {os.path.join(config.usrPath, config.path, serviceName + ".py")}
 WorkingDirectory={config.path}
 RemainAfterExit=yes
