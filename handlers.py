@@ -26,9 +26,9 @@ async def start_handler(msg: Message):
     await msg.answer(hi, reply_markup=builder.as_markup())
 
 
-@router.message(Command("cd-run"))
+@router.message(Command("cd_run"))
 async def start_handler(msg: Message):
-    if msg.chat.id not in config.TOP_ADMINS:
+    if not(msg.chat.id in config.TOP_ADMINS):
         await msg.answer(strConfig.accessDenied + '\n id: ' + str(msg.chat.id))
         return None
 
