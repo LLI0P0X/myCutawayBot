@@ -14,7 +14,7 @@ After=muli-user.target
 
 [Service]
 Type=simple
-ExecStart=python3 {os.path.join(config.path, serviceName + ".py")}
+ExecStart=/usr/bin/python3 {os.path.join(config.path, serviceName + ".py")}
 WorkingDirectory={config.path}
 RemainAfterExit=yes
 Restart=always
@@ -40,4 +40,3 @@ if __name__ == "__main__":
     serviceName = 'main'
     createService(serviceName)
     runService(serviceName)
-   
