@@ -37,6 +37,11 @@ async def start_handler(msg: Message):
         await msg.answer(strConfig.accessDenied + '\n id: ' + str(msg.from_user.id))
 
 
+@router.message(Command("cd_check"))
+async def start_handler(msg: Message):
+    await msg.answer('Оно работает')
+
+
 @router.callback_query(lambda c: "btnHello" in c.data)
 async def send_random_value(callback: types.CallbackQuery):
     builder = InlineKeyboardBuilder()
