@@ -21,7 +21,7 @@ Restart=always
 
 [Install]
 WantedBy=multi-user.target'''
-    with open(f'{serviceName}.service', 'w') as serviceFile:
+    with open(os.path.join(os.path.dirname(__file__), serviceName + ".service"), 'w') as serviceFile:
         serviceFile.write(strService)
 
 
