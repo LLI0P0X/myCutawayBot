@@ -5,3 +5,4 @@ helloMessage = '''
 '''
 
 accessDenied = 'В доступе отказано'
+startMsgForAdm = 'Бот запущен'
