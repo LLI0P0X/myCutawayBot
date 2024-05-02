@@ -9,10 +9,15 @@ import strConfig
 from handlers import router
 
 
-async def main():
+async def startMsg():
     bot = Bot(token=config.BOT_TOKEN)
     for ids in config.TOP_ADMINS:
         await bot.send_message(ids, strConfig.startMsgForAdm)
+    await bot.session.close()
+
+
+async def main():
+    bot = Bot(token=config.BOT_TOKEN)
     dp = Dispatcher(storage=MemoryStorage())
     dp.include_router(router)
     await bot.delete_webhook(drop_pending_updates=True)
@@ -21,4 +26,5 @@ async def main():
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
+    asyncio.run(startMsg())
     asyncio.run(main())
