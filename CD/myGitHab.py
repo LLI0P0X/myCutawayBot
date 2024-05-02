@@ -9,3 +9,7 @@ import config
 
 def pull(branch: str = 'master'):
     subprocess.run(f'sudo git pull {config.gitHabUrl}.git {branch}', shell=True)
+
+
+if __name__ == "__main__":
+    pull()
