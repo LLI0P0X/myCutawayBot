@@ -1,6 +1,7 @@
 /.idea
-/__pycache__
-secret.py
+*__pycache__*
+secret*
 temp*
 /.venv
 *.service
+out
