@@ -30,6 +30,10 @@ async def hello_handler(msg: Message):
     await msg.answer(hi, reply_markup=builder.as_markup())
 
 
+@router.message(Command("dev"))
+async def dev_handler(msg: Message):
+    await msg.answer('dev ok 02.09.2024')
+
 @router.message(Command("cd_run"))
 async def upg_handler(msg: Message):
     if str(msg.from_user.id) in config.TOP_ADMINS:
@@ -41,7 +45,6 @@ async def upg_handler(msg: Message):
         await msg.answer(strConfig.accessDenied + '\n id: ' + str(msg.from_user.id))
 
 
-@router.message(Command("l"))
 @router.message(Command("l"))
 async def eulers_handler(msg: Message):
     n = msg.text.split(' ')[1]
@@ -55,7 +58,6 @@ async def eulers_handler(msg: Message):
     await msg.answer(ans)
 
 
-@router.message(Command("con"))
 @router.message(Command("con"))
 async def cononical_handler(msg: Message):
     n = msg.text.split(' ')[1]
