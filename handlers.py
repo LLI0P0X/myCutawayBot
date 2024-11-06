@@ -38,7 +38,7 @@ async def upg_handler(msg: Message):
     if str(msg.from_user.id) in config.TOP_ADMINS:
         await msg.answer('Обновление начато')
         CD.myGitHab.pull()
-        CD.myService.createService('main')
+        # CD.myService.createService('main')
         CD.myService.runService('main')
     else:
         await msg.answer(strConfig.accessDenied + '\n id: ' + str(msg.from_user.id))
