@@ -31,7 +31,7 @@ async def hello_handler(msg: Message):
 
 @router.message(Command("dev"))
 async def dev_handler(msg: Message):
-    await msg.answer('dev ok 06.11.2024')
+    await msg.answer('dev ok 06.11.2024 -changed')
 
 @router.message(Command("cd_run"))
 async def upg_handler(msg: Message):
