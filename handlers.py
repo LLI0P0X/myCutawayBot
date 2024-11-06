@@ -7,7 +7,6 @@ from aiogram import F
 import config
 import strConfig
 import CD.myService, CD.myGitHab
-from utils import pdfUtils
 from utils import myMath
 
 router = Router()
