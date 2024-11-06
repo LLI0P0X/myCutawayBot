@@ -3,7 +3,7 @@ import os
 
 BOT_TOKEN = secret.BOT_TOKEN
 TOP_ADMINS = secret.TOP_ADMINS
-GigaChatToken = secret.GigaChatToken
+# GigaChatToken = secret.GigaChatToken
 
 gitHabUrl = 'https://github.com/LLI0P0X/myCutawayBot'
 path = os.getcwd()
