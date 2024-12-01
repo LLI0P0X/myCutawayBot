@@ -8,6 +8,7 @@ import config
 import strConfig
 import CD.myService, CD.myGitHab
 from utils import myMath
+import sqla
 
 router = Router()
 
@@ -25,13 +26,15 @@ async def hello_handler(msg: Message):
         hi = "Добро пожаловать, админ"
     else:
         hi = strConfig.helloMessage
-
+    if await sqla.check_user_by_tg_id(msg.from_user.id) == False:
+        await sqla.add_user(tg_id=msg.from_user.id)
     await msg.answer(hi, reply_markup=builder.as_markup())
 
 
 @router.message(Command("dev"))
 async def dev_handler(msg: Message):
     await msg.answer('dev ok 06.11.2024 -changed')
+
 
 @router.message(Command("cd_run"))
 async def upg_handler(msg: Message):
