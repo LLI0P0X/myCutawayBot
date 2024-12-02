@@ -61,6 +61,10 @@ class MyLogger(_logger.Logger):
                     self.warning('No tg_ids provided, tg_notify is set to False')
                     self.tg_notify = False
 
+    def opt_log(self, level, message, *args, **kwargs):
+        depth = getDepth(inspect.currentframe())
+        super().opt(depth=depth).log(level, message, *args, **kwargs)
+
     def notify_sync(self, level, message):
         if self.tg_notify:
             # self.log(level, message)
@@ -69,19 +73,16 @@ class MyLogger(_logger.Logger):
                 asyncio.run(self.bot.send_message(_id, msg))
         else:
             self.warning('tg_notify is False')
-        frame = inspect.currentframe()
-        depth = getDepth(frame)
-        logger.opt(depth=depth).log(level, message)
+        self.opt_log(level, message)
 
     async def notify(self, level, message):
         if self.tg_notify:
-            self.log(level, message)
             msg = f'lvl: {level}\nserver time:{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n{message}'
             for _id in self.tg_ids:
                 await self.bot.send_message(_id, msg)
         else:
             self.warning('tg_notify is False')
-            self.log(level, message)
+        self.opt_log(level, message)
 
 
 logger = MyLogger(tg_notify=True)
