@@ -25,4 +25,3 @@ if __name__ == "__main__":
         asyncio.run(main())
     except KeyboardInterrupt:
         logger.critical('Bot stopped by user')
-        time.sleep(1)
