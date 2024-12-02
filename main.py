@@ -1,5 +1,6 @@
 import asyncio
 import logging
+import time
 
 from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
@@ -7,13 +8,7 @@ from aiogram.fsm.storage.memory import MemoryStorage
 import config
 import strConfig
 from handlers import router
-
-
-async def startMsg():
-    bot = Bot(token=config.BOT_TOKEN)
-    for ids in config.TOP_ADMINS:
-        await bot.send_message(ids, strConfig.startMsgForAdm)
-    await bot.session.close()
+from myLogger import logger, InterceptHandler
 
 
 async def main():
@@ -25,6 +20,9 @@ async def main():
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
-    asyncio.run(startMsg())
-    asyncio.run(main())
+    logger.notify_sync('INFO', "Starting bot")
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        logger.critical('Bot stopped by user')
+        time.sleep(1)

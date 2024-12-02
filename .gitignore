@@ -1,8 +1,10 @@
 /.idea
+/.venv
+/alembic/versions
 *__pycache__*
+
 secret*
 temp*
-/.venv
+
 *.service
-out
-/alembic/versions
+*.log
