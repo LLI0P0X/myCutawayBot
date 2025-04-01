@@ -40,26 +40,23 @@ class MyLogger(_logger.Logger):
         super(MyLogger, self).__init__(core, exception, depth, record, lazy, colors, raw, capture, patchers, extra)
         self.tg_notify = tg_notify
         if tg_notify:
-            from aiogram import Bot
-            import asyncio
-            if tg_token:
-                self.bot = Bot(token=tg_token)
-            else:
-                try:
+            try:
+                from aiogram import Bot
+                import asyncio
+                if not (tg_token or tg_ids):
                     import config
+                if tg_token:
+                    self.bot = Bot(token=tg_token)
+                else:
                     self.bot = Bot(token=config.BOT_TOKEN)
-                except ImportError | ModuleNotFoundError | AttributeError:
-                    self.warning('No tg_token provided, tg_notify is set to False')
-                    self.tg_notify = False
-            if tg_ids:
-                self.tg_ids = tg_ids
-            else:
-                try:
-                    import config
+
+                if tg_ids:
+                    self.tg_ids = tg_ids
+                else:
                     self.tg_ids = config.TOP_ADMINS
-                except ImportError | ModuleNotFoundError | AttributeError:
-                    self.warning('No tg_ids provided, tg_notify is set to False')
-                    self.tg_notify = False
+            except (ImportError, ModuleNotFoundError, AttributeError):
+                self.warning('TG error, tg_notify is set to False')
+                self.tg_notify = False
 
     def opt_log(self, level, message, *args, **kwargs):
         depth = getDepth(inspect.currentframe())

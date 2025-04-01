@@ -1,4 +1,4 @@
-def eulersFunction(n: int or str) -> int:
+def eulerFunction(n: int or str) -> int:
     n = int(n)
     res = n
     for d in range(2, int(n ** 0.5) + 1):
@@ -11,7 +11,7 @@ def eulersFunction(n: int or str) -> int:
     return res
 
 
-def eulersFunctionFull(n: int or str) -> dict:
+def eulerFunctionFull(n: int or str) -> dict:
     n = int(n)
     ret = {}
     ret['all'] = []
@@ -42,7 +42,7 @@ def numberIntoPrimeFactors(n: int or str) -> list:
     return primfacs
 
 
-def cononicalNumber(n: int or str) -> str:
+def canonicalNumber(n: int or str) -> str:
     n = int(n)
     primfacs = numberIntoPrimeFactors(n)
     ret = ''
@@ -56,4 +56,4 @@ def cononicalNumber(n: int or str) -> str:
 
 
 if __name__ == '__main__':
-    print(cononicalNumber(441))
+    print(canonicalNumber(441))

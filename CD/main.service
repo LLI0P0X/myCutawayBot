@@ -1,0 +1,13 @@
+[Unit]
+Description=main.py
+After=muli-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /home/admin/D:\project\myCutawayBot\CD\main.py
+WorkingDirectory=D:\project\myCutawayBot\CD
+RemainAfterExit=yes
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

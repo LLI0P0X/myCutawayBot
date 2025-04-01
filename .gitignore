@@ -1,10 +1,10 @@
 /.idea
 /.venv
-/alembic/versions
 *__pycache__*
 
 secret*
 temp*
 
-*.service
 *.log
+
+db.sqlite
