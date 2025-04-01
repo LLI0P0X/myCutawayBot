@@ -68,7 +68,7 @@ class MyLogger(_logger.Logger):
     def notify_sync(self, level, message):
         if self.tg_notify:
             # self.log(level, message)
-            msg = f'lvl: {level}\nserver time:{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n{message}'
+            msg = f"lvl: {level}\nserver time:{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n{message}"
             for _id in self.tg_ids:
                 asyncio.run(self.bot.send_message(_id, msg))
         else:
@@ -77,7 +77,7 @@ class MyLogger(_logger.Logger):
 
     async def notify(self, level, message):
         if self.tg_notify:
-            msg = f'lvl: {level}\nserver time:{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n{message}'
+            msg = f"lvl: {level}\nserver time:{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n{message}"
             for _id in self.tg_ids:
                 await self.bot.send_message(_id, msg)
         else:
